@@ -4,14 +4,19 @@ myRetail Restful service
 # Technologies
 
 JDK 1.8.0
+
 Mongo 3.2.10
+
 Maven 4.0
+
 SpringBoot 1.5.3.RELEASE
 
 # Mongo DB database and collection
 
 database=myretail
+
 mongodb host=localhost
+
 mongodb port=27017
 
 mongo collection name =productprice
