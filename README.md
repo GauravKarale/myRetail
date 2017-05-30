@@ -11,6 +11,8 @@ Maven 4.0
 
 SpringBoot 1.5.3.RELEASE
 
+EhCache 
+
 # Mongo DB database and collection
 
 database=myretail
@@ -72,7 +74,6 @@ Request Body:-
 
 {
   "id": 13860428,
-  "name": "The Big Lebowski (Blu-ray)",
   "productPrice": {
     "price": 1000.00,
     "currencyCode": "USD"
