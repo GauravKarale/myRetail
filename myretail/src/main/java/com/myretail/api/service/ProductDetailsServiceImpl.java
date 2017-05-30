@@ -70,6 +70,8 @@ public class ProductDetailsServiceImpl implements ProductDetailsService {
 				throw new Exception(" Please check product price and currency code details, it should not be empty ");
 		}
 		newProductPrice.setId(id);
+		String productName=getProductName(id);
+		newProduct.setName(productName);
 		newProductPrice=_productDetailsServiceImpl.updateProductPrice(id,newProduct);
 		
 		newProduct.setProductPrice(newProductPrice);
