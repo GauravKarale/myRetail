@@ -1,7 +1,6 @@
 package com.myretail.api.starter;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -16,7 +15,6 @@ import org.springframework.web.client.RestTemplate;
  * Info :-Myretail api spring boot starter class
  * */
 @SpringBootApplication
-@EnableAutoConfiguration
 @EnableMongoRepositories("com.myretail.api.repository")
 @ComponentScan("com.myretail.api.exception")
 @ComponentScan("com.myretail.api.controller")
@@ -33,6 +31,5 @@ public class MyRetailApp {
 	public RestTemplate restTemplate() {
 	    return new RestTemplate();
 	}
-	
 	
 }

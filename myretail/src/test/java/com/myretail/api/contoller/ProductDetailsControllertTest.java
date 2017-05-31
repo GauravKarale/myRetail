@@ -25,7 +25,7 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 import com.myretail.api.controller.ProductDetailsController;
 import com.myretail.api.model.ProductDetails;
 import com.myretail.api.model.ProductPrice;
-import com.myretail.api.service.ProductDetailsService;
+import com.myretail.api.service.ProductDetailsServiceImpl;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes=ProductDetailsController.class)
@@ -37,7 +37,7 @@ public class ProductDetailsControllertTest {
 	
     @MockBean
     @Qualifier(value="productDetailService")
-    private  ProductDetailsService productDetailsService;
+    private  ProductDetailsServiceImpl productDetailsService;
 	
     private int MOVIE_ID=13860428;
 
@@ -49,8 +49,8 @@ public class ProductDetailsControllertTest {
 		prodPrice.setCurrencyCode("USD");
 		prodPrice.setPrice(new BigDecimal(2000));
 		prodDetails= new ProductDetails(MOVIE_ID,"The Big Lebowski (Blu-ray)",prodPrice);
-		
 	}
+	
 	
 	@Test
 	public void getProductDetailsTest() throws Exception {
@@ -93,7 +93,4 @@ public class ProductDetailsControllertTest {
 		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 		Assert.assertEquals(HttpStatus.OK.value(),result.getResponse().getStatus());
 	}
-	
-	
-    
 }

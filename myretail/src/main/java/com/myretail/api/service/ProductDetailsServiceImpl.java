@@ -87,6 +87,7 @@ public class ProductDetailsServiceImpl implements ProductDetailsService {
 		return prodPrice;
 	}
 	
+	
 	@CachePut(value = "productPriceCache", key = "#id")
 	public ProductPrice updateProductPrice(int id,ProductDetails newProduct) throws MongoException{
 		log.info("in updateProductPrice");
@@ -109,15 +110,25 @@ public class ProductDetailsServiceImpl implements ProductDetailsService {
 		ObjectMapper mapper = new ObjectMapper();
 		String productName="";
 		try {
-			JsonNode root = mapper.readTree(response.getBody());
-			productName=root.findValue("product").findValue("item").findValue("product_description")
-					.findValue("title").asText();
+			JsonNode root=null;
+			String jsonString=response.getBody();
+			if(jsonString!=null||!"".equals(jsonString)){
+				root = mapper.readTree(jsonString);
+				if(root.findValue("product")!=null){
+					root=root.findValue("product");
+					if(root.findValue("item")!=null){
+						root=root.findValue("item");
+						if(root.findValue("product_description")!=null){
+							root=root.findValue("product_description");
+							if(root.findValue("title")!=null){
+								productName=root.findValue("title").asText();
+							}
+						}
+					}
+				}
+			}
 			log.debug("productName : "+productName);
 		} 
-		catch(NullPointerException e){
-			log.error("Parsing failed nullPointerException "+e.getMessage());
-			throw new IOException(e.getMessage());
-		}
 		catch (IOException e) {
 			log.error("Parsing failed IOException "+e.getMessage());
 			throw new IOException(e.getMessage());
